@@ -62,24 +62,36 @@ function SalesDashboard() {
   };
 
   const handleSubmit = (data) => {
-    const itemAvailable = true
-    const leftQuantity =-1
+    var itemAvailable = true
+    var leftQuantity =-1
     
       data.items.forEach((item)=>{
          leftQuantity = item.quantity_in_inventory - item.quantity;
        if(leftQuantity<0){
           itemAvailable = false
+          return
        }
       })
-      if(itemAvailable){
-        updateProductMutation.mutate({id:item.sku_id,qunt:leftQuantity})
-        if (currentOrder) {
+    //   console.log('avai-quant',itemAvailable)
+    //   if(itemAvailable){
+    //   console.log('in-avail-mutation')
+    //   data.items.forEach((item)=>{
+    //     leftQuantity = item.quantity_in_inventory - item.quantity;
+    //     updateProductMutation.mutate({id:item.sku_id,qunt:leftQuantity})
+
+    //   })
+        if ( currentOrder) {
           updateMutation.mutate({id: currentOrder.id , ...data});
-    
-        } else {
+          console.log('update mutation happen')
+        } else if(itemAvailable){
+          data.items.forEach((item)=>{
+                leftQuantity = item.quantity_in_inventory - item.quantity;
+                updateProductMutation.mutate({id:item.sku_id,qunt:leftQuantity})
+          })
           addMutation.mutate(data);
-        }
-      }else{
+          console.log('add mutation happen')
+
+        } else{
         toast({
             title: 'insuficient quantity',
             status: 'error',

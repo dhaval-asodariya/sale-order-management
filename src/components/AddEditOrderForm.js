@@ -200,7 +200,7 @@ onClose()
                 <FormLabel>Quantity</FormLabel>
                 <NumberInput
                   value={item.quantity}
-                  max={item.quantity_in_inventory}
+                  // max={item.quantity_in_inventory}
                   onChange={(value) => handleInputChange(index, 'quantity', value)}
                 >
                   <NumberInputField />
