@@ -1,4 +1,4 @@
-// pages/LoginPage.js
+
 import React, { useState } from 'react';
 import { Button, Input, FormControl, FormLabel,Text } from '@chakra-ui/react';
 import { useAuth } from '../context/AuthContext';

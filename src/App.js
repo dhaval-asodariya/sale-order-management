@@ -4,7 +4,6 @@ import { ChakraProvider, Box } from '@chakra-ui/react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import LoginPage from './pages/Login';
 import SalesDashboard from './pages/SalesDashboard';
-import ThemeToggle from './components/ThemeToggle';
 import theme from './theme';
 import Navbar from './components/Navbar'
 import HomePage from './pages/HomePage'
@@ -16,7 +15,6 @@ const PrivateRoute = ({ children }) => {
 };
 
 const App = () => {
-console.log('home page rendered')
 
   return (
     <ChakraProvider theme={theme}>
@@ -26,28 +24,21 @@ console.log('home page rendered')
             <Navbar/>
             
             
-            {/* <ThemeToggle /> */}
+            
             <Box sx={{maxWidth:'1500px',margin:'auto'}}>
             <Routes>
               <Route path='/' element={<HomePage/>}/>
               <Route path="/login" element={<LoginPage />} />
               <Route
-                path="/active-sale-orders"
+                path="/Sale-Dashboard"
                 element={
                   <PrivateRoute>
                     <SalesDashboard />
                   </PrivateRoute>
                 }
               />
-              <Route
-                path="/completed-sale-orders"
-                element={
-                  <PrivateRoute>
-                    <SalesDashboard />
-                  </PrivateRoute>
-                }
-              />
-              <Route path="*" element={<Navigate to="/active-sale-orders" />} />
+             
+              <Route path="*" element={<Navigate to="/login" />} />
             </Routes>
             </Box>
           </div>

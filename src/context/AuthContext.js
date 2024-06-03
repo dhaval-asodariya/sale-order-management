@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
   const login = (username, password) => {
     if (username === 'admin' && password === 'admin') {
       setIsAuthenticated(true);
-      navigate('/active-sale-orders');
+      navigate('/Sale-Dashboard');
       toast({
         title: 'Logged in.',
         // description: "..",
@@ -32,7 +32,6 @@ export const AuthProvider = ({ children }) => {
     navigate('/login');
     toast({
         title: 'Logged out.',
-        // description: "..",
         status: 'error',
         duration: 3000,
         isClosable: true,

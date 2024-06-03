@@ -19,9 +19,9 @@ import {
   Box,Text,Radio,Stack,RadioGroup
 } from '@chakra-ui/react';
 import Select from 'react-select';
-import { fetchCustomers, fetchProducts } from '../api';
+import { fetchCustomers } from '../api';
 import { generateUniqueInvoiceNumber } from '../uniqueInvoiceNo'
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 
 

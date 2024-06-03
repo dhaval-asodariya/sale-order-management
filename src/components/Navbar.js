@@ -1,4 +1,3 @@
-'use client'
 
 import {
   Box,
@@ -21,29 +20,6 @@ import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import {  useAuth,isAuthenticated } from '../context/AuthContext';
 import { useNavigate } from "react-router-dom";
 
-
-// interface Props {
-//   children: React.ReactNode
-// }
-
-// const NavLink = (props: Props) => {
-//   const { children } = props
-
-//   return (
-//     <Box
-//       as="a"
-//       px={2}
-//       py={1}
-//       rounded={'md'}
-//       _hover={{
-//         textDecoration: 'none',
-//         bg: useColorModeValue('gray.200', 'gray.700'),
-//       }}
-//       href={'#'}>
-//       {children}
-//     </Box>
-//   )
-// }
 
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -77,7 +53,7 @@ export default function Navbar() {
               bg: 'pink.300',
             }}
             onClick={()=>navigate('/login')}>
-               {/* <Avatar size='sm'sx={{marginRight:'5px'}} src='https://bit.ly/broken-link' />  */}
+              
             Sign In
           </Button>
            :

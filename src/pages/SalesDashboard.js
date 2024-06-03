@@ -4,7 +4,6 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetchSaleOrders, addSaleOrder, updateSaleOrder,updateProducts,fetchProducts } from '../api/index';
 import SaleOrderTable from '../components/SaleOrderTable';
 import { Skeleton } from '@chakra-ui/react'
-import { useNavigate } from "react-router-dom";
 import AddEditOrderForm from '../components/AddEditOrderForm';
 
 function SalesDashboard() {
@@ -23,7 +22,7 @@ function SalesDashboard() {
       queryFn: fetchProducts,
     });
   console.log("saleOrders",saleOrders)
-  console.log("currentOrder",currentOrder)
+ 
 
 
   const addMutation = useMutation({
@@ -72,26 +71,19 @@ function SalesDashboard() {
           return
        }
       })
-    //   console.log('avai-quant',itemAvailable)
-    //   if(itemAvailable){
-    //   console.log('in-avail-mutation')
-    //   data.items.forEach((item)=>{
-    //     leftQuantity = item.quantity_in_inventory - item.quantity;
-    //     updateProductMutation.mutate({id:item.sku_id,qunt:leftQuantity})
-
-    //   })
-        if ( currentOrder) {
+  
+ 
+      if ( currentOrder) {
           updateMutation.mutate({id: currentOrder.id , ...data});
-          console.log('update mutation happen')
-        } else if(itemAvailable){
+
+      } else if(itemAvailable){
           data.items.forEach((item)=>{
                 leftQuantity = item.quantity_in_inventory - item.quantity;
                 updateProductMutation.mutate({id:item.sku_id,qunt:leftQuantity})
           })
           addMutation.mutate(data);
-          console.log('add mutation happen')
 
-        } else{
+      } else{
         toast({
             title: 'insuficient quantity',
             status: 'error',
@@ -114,6 +106,7 @@ function SalesDashboard() {
   return (
     <Box>
        <Text fontSize='3xl'>Sale Dashboard</Text>
+       <Text fontSize='2xl'> {isActiveSale?'Active Sale orders':'Complited Sale Orders'}</Text>
         <Box sx={{display:'flex',justifyContent:'space-between'}}>
         <Stack direction={'row'} sx={{marginTop:'10px'}} spacing={7}>
             <Button colorScheme='teal' onClick={()=>setIsActiveSale(true)}>Active Sale Orders</Button>
