@@ -62,28 +62,32 @@ function SalesDashboard() {
   };
 
   const handleSubmit = (data) => {
+    const itemAvailable = true
+    const leftQuantity =-1
     
-    if(data.paid){
       data.items.forEach((item)=>{
-        const leftQuantity = item.quantity_in_inventory - item.quantity;
-       if(leftQuantity>0){
-          updateProductMutation.mutate({id:item.sku_id,qunt:leftQuantity})
-         
-       }else{toast({
-        title: 'insuficient quantity',
-        status: 'error',
-        duration: 3000,
-        isClosable: true,
-      })}
-       
+         leftQuantity = item.quantity_in_inventory - item.quantity;
+       if(leftQuantity<0){
+          itemAvailable = false
+       }
       })
-    }
-    if (currentOrder) {
-      updateMutation.mutate({id: currentOrder.id , ...data});
-
-    } else {
-      addMutation.mutate(data);
-    }
+      if(itemAvailable){
+        updateProductMutation.mutate({id:item.sku_id,qunt:leftQuantity})
+        if (currentOrder) {
+          updateMutation.mutate({id: currentOrder.id , ...data});
+    
+        } else {
+          addMutation.mutate(data);
+        }
+      }else{
+        toast({
+            title: 'insuficient quantity',
+            status: 'error',
+            duration: 3000,
+            isClosable: true,
+          })
+      }
+        
     onClose();
     
   };
