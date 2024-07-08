@@ -5,7 +5,7 @@ import { FaEllipsisH } from 'react-icons/fa';
 function SaleOrderTable({orders,onEdit}) {
  console.log('sell table called')
   return (
-    <Table variant="simple">
+    <Table variant="simple" >
       <Thead>
         <Tr>
           <Th>Invoice No</Th>

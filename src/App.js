@@ -20,12 +20,12 @@ const App = () => {
     <ChakraProvider theme={theme}>
       <AuthProvider>
         
-          <div>
+          <div >
             <Navbar/>
             
             
             
-            <Box sx={{maxWidth:'1500px',margin:'auto'}}>
+            <Box sx={{maxWidth:'1400px',margin:'auto'}}>
             <Routes>
               <Route path='/' element={<HomePage/>}/>
               <Route path="/login" element={<LoginPage />} />
